@@ -74,13 +74,11 @@ class Parser {
         $this->errorManager->add("Field {$key} didn't pass the test!");
         return FALSE;
       }
+      elseif (isset($field['fn']) && $field['fn']) {
+        $result[$key] = $field['fn']($input);
+      }
       else {
-        if (isset($field['fn']) && $field['fn']) {
-          $result[$key] = $field['fn']($input);
-        }
-        else {
-          $result[$key] = $input;
-        }
+        $result[$key] = $input;
       }
     }
 

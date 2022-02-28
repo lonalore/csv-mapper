@@ -57,13 +57,32 @@ class ExcelFile extends SourceBase {
 
     $values = [];
 
-    for ($col = 0; $col <= $highestColumnIndex - 1; $col++) {
+    for ($col = 1; $col <= $highestColumnIndex; $col++) {
       $cell = $worksheet->getCellByColumnAndRow($col, $this->rowNumber);
       $cellValue = $cell->getValue();
       array_push($values, $cellValue);
     }
 
     $this->rowNumber++;
+
+    return $values;
+  }
+
+  public function getFirstRowAsArray() {
+    /** @var \PhpOffice\PhpSpreadsheet\Spreadsheet $spreadsheet */
+    $spreadsheet = $this->getHandler();
+    /** @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet */
+    $worksheet = $spreadsheet->setActiveSheetIndex(0);
+
+    $highestColumnIndex = $this->getColumnsCount();
+
+    $values = [];
+
+    for ($col = 1; $col <= $highestColumnIndex; $col++) {
+      $cell = $worksheet->getCellByColumnAndRow($col, 1);
+      $cellValue = $cell->getValue();
+      array_push($values, $cellValue);
+    }
 
     return $values;
   }

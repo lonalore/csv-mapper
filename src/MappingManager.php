@@ -17,7 +17,7 @@ class MappingManager {
    *
    * @param string $key
    *  Mapping's key.
-   * @param object $value
+   * @param array $value
    *  Mapping's value.
    */
   function set($key, $value) {

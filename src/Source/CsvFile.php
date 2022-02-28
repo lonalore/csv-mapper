@@ -98,6 +98,15 @@ class CsvFile extends SourceBase {
   }
 
   /**
+   * @return array|false
+   */
+  public function getFirstRowAsArray() {
+    $this->reset();
+    $rawRow = fgetcsv($this->getHandler(), 0, $this->getSeparator(), $this->getEnclosure());
+    return $rawRow;
+  }
+
+  /**
    * @return bool
    */
   public function hasRow() {

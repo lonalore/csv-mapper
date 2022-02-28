@@ -200,6 +200,13 @@ abstract class SourceBase {
   abstract public function getRowAsArray();
 
   /**
+   * Return the first row as an array.
+   *
+   * @return mixed
+   */
+  abstract public function getFirstRowAsArray();
+
+  /**
    * Check if the file has another row.
    *
    * @return mixed
