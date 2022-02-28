@@ -107,6 +107,17 @@ class CsvFile extends SourceBase {
   }
 
   /**
+   * Skips the first row.
+   *
+   * @return void
+   */
+  public function skipFirstRow() {
+    if (!empty($this->handler)) {
+      fseek($this->handler, 1);
+    }
+  }
+
+  /**
    * @return bool
    */
   public function hasRow() {

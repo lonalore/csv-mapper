@@ -186,6 +186,13 @@ abstract class SourceBase {
   abstract public function reset();
 
   /**
+   * Skips the first row.
+   *
+   * @return mixed
+   */
+  abstract public function skipFirstRow();
+
+  /**
    * Return the number of columns contained in the file.
    *
    * @return mixed

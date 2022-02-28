@@ -88,6 +88,15 @@ class ExcelFile extends SourceBase {
   }
 
   /**
+   * Skips the first row.
+   *
+   * @return void
+   */
+  public function skipFirstRow() {
+    $this->rowNumber = 2;
+  }
+
+  /**
    * @return bool
    * @throws \PhpOffice\PhpSpreadsheet\Exception
    */

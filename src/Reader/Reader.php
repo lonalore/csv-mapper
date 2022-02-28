@@ -55,6 +55,15 @@ class Reader {
   }
 
   /**
+   * Skips the first row.
+   *
+   * @return void
+   */
+  public function skipFirstRow() {
+    $this->source->skipFirstRow();
+  }
+
+  /**
    * @return void
    * @throws \CSVMapper\Exception\WrongColumnsNumberException
    */

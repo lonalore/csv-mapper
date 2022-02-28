@@ -36,12 +36,12 @@ while ($reader->hasNextRow()) {
   $row = $reader->getNextRow();
   if ($row) {
     var_dump($row);
-    //    Array
-    //    (
-    //      [Column label: Column 1] => Column 1
-    //      [Column label: Column 2] => Column 2
-    //      [Column label: Column 3] => 3d7b1063d3183f57af6112ab40975bef
-    //    )
+//    Array
+//    (
+//        [Column label: A] => Foo
+//        [Column label: B] => Bar
+//        [Column label: C] => 01677e4c0ae5468b9b8b823487f14524
+//    )
   }
 }
 ```
