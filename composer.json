@@ -1,0 +1,23 @@
+{
+    "name": "lonalore/csv-mapper",
+    "type": "library",
+    "description": "CSV Parser with field callbacks.",
+    "keywords": ["csv"],
+    "homepage": "https://github.com/lonalore/csv-mapper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lonalore",
+            "homepage": "https://github.com/lonalore/csv-mapper"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.14"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "CSVMapper": "src",
+        }
+    }
+}
