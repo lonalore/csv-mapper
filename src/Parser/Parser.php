@@ -2,8 +2,8 @@
 
 namespace CSVMapper\Parser;
 
-use CSVMapper\Configuration\MappingManager;
-use CSVMapper\Configuration\ErrorManager;
+use CSVMapper\MappingManager;
+use CSVMapper\ErrorManager;
 
 /**
  * Parser.
@@ -11,12 +11,12 @@ use CSVMapper\Configuration\ErrorManager;
 class Parser {
 
   /**
-   * @var \CSVMapper\Configuration\MappingManager
+   * @var \CSVMapper\MappingManager
    */
   private $mappingManager;
 
   /**
-   * @var \CSVMapper\Configuration\ErrorManager
+   * @var \CSVMapper\ErrorManager
    */
   private $errorManager;
 
@@ -28,7 +28,7 @@ class Parser {
   }
 
   /**
-   * @param \CSVMapper\Configuration\MappingManager $mappingManager
+   * @param \CSVMapper\MappingManager $mappingManager
    *
    * @return void
    */
@@ -44,7 +44,7 @@ class Parser {
   }
 
   /**
-   * @param \CSVMapper\Configuration\ErrorManager $errorManager
+   * @param \CSVMapper\ErrorManager $errorManager
    *
    * @return void
    */
@@ -64,7 +64,7 @@ class Parser {
 
     foreach ($this->mappingManager->getAll() as $key => $field) {
       if (isset($field['key']) && !is_null($field['key'])) {
-        $input = $this->remove_quotes($row[$field['key']]);
+        $input = $this->removeQuotes($row[$field['key']]);
       }
       else {
         $input = $field['value'];
@@ -92,7 +92,7 @@ class Parser {
    *
    * @return string
    */
-  public function remove_quotes($input) {
+  public function removeQuotes($input) {
     if (strlen($input) > 0) {
       if (substr($input, 0, 1) == '"') {
         $input = substr($input, 1);

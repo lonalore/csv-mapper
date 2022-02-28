@@ -1,6 +1,6 @@
 <?php
 
-namespace CSVMapper\Configuration;
+namespace CSVMapper;
 
 /**
  * SettingManager.
