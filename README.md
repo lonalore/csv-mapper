@@ -31,6 +31,7 @@ $parser->setMappingManager($mapper);
 
 $reader->setFile($file);
 $reader->setParser($parser);
+$reader->skipFirstRow();
 
 while ($reader->hasNextRow()) {
   $row = $reader->getNextRow();
