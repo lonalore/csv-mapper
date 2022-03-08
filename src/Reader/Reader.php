@@ -108,6 +108,15 @@ class Reader {
   }
 
   /**
+   * @param int $number
+   *
+   * @return void
+   */
+  public function setRowNumber(int $number) {
+      $this->source->setRowNumber($number);
+  }
+
+  /**
    * @return void
    */
   public function close() {

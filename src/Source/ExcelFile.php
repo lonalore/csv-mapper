@@ -110,6 +110,15 @@ class ExcelFile extends SourceBase {
   }
 
   /**
+   * @param int $number
+   *
+   * @return void
+   */
+  public function setRowNumber(int $number) {
+    $this->rowNumber = (int) $number;
+  }
+
+  /**
    * @return bool
    * @throws \PhpOffice\PhpSpreadsheet\Exception
    */

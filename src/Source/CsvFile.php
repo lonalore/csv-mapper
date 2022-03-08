@@ -135,6 +135,15 @@ class CsvFile extends SourceBase {
   }
 
   /**
+   * @param int $number
+   *
+   * @return void
+   */
+  public function setRowNumber(int $number) {
+    fseek($this->handler, $number);
+  }
+
+  /**
    * @return bool
    */
   public function hasRow() {
