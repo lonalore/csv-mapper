@@ -90,6 +90,23 @@ class CsvFile extends SourceBase {
   }
 
   /**
+   * @return int
+   */
+  public function getRowsCount() {
+    $c = 0;
+    if ($this->handler) {
+      while (!feof($this->handler)) {
+        $content = fgets($this->handler);
+        if ($content) {
+          $c++;
+        }
+      }
+    }
+    $this->reset();
+    return $c;
+  }
+
+  /**
    * @return array|false
    */
   public function getRowAsArray() {

@@ -37,10 +37,23 @@ class ExcelFile extends SourceBase {
     /** @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet */
     $worksheet = $spreadsheet->setActiveSheetIndex(0);
 
-    $highestColumn = $worksheet->getHighestColumn();
+    $highestColumn = $worksheet->getHighestDataColumn();
     $highestColumnIndex = Coordinate::columnIndexFromString($highestColumn);
 
     return $highestColumnIndex;
+  }
+
+  /**
+   * @return float|int|mixed
+   * @throws \PhpOffice\PhpSpreadsheet\Exception
+   */
+  public function getRowsCount() {
+    /** @var \PhpOffice\PhpSpreadsheet\Spreadsheet $spreadsheet */
+    $spreadsheet = $this->getHandler();
+    /** @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet */
+    $worksheet = $spreadsheet->setActiveSheetIndex(0);
+
+    return $worksheet->getHighestDataRow();
   }
 
   /**
@@ -106,7 +119,7 @@ class ExcelFile extends SourceBase {
     /** @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet */
     $worksheet = $spreadsheet->setActiveSheetIndex(0);
 
-    $highestRow = $worksheet->getHighestRow();
+    $highestRow = $worksheet->getHighestDataRow();
 
     if ($highestRow == 1 && $worksheet->getCellByColumnAndRow(0, 1)->getValue() == NULL) {
       return FALSE;

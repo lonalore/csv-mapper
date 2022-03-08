@@ -200,6 +200,13 @@ abstract class SourceBase {
   abstract public function getColumnsCount();
 
   /**
+   * Return the number of rows contained in the file.
+   *
+   * @return mixed
+   */
+  abstract public function getRowsCount();
+
+  /**
    * Return the current row as an array.
    *
    * @return mixed
