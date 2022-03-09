@@ -57,7 +57,7 @@ class CsvFile extends SourceBase {
    * @return false|resource
    */
   public function open() {
-    $handler = fopen($this->getPath(), "r");
+    $handler = new \SplFileObject($this->getPath(), "r");
     return $handler;
   }
 
@@ -65,9 +65,7 @@ class CsvFile extends SourceBase {
    * @return void
    */
   public function close() {
-    if (!empty($this->handler)) {
-      fclose($this->handler);
-    }
+    $this->getHandler()->fclose();
     $this->handler = NULL;
   }
 
@@ -75,16 +73,15 @@ class CsvFile extends SourceBase {
    * @return void
    */
   public function reset() {
-    if (!empty($this->handler)) {
-      fseek($this->handler, 0);
-    }
+    $this->seek(0);
   }
 
   /**
    * @return int
    */
   public function getColumnsCount() {
-    $fileColumns = count(fgetcsv($this->getHandler(), 0, $this->getSeparator(), $this->getEnclosure()));
+    $fileColumns = count($this->getHandler()
+      ->fgetcsv($this->getSeparator(), $this->getEnclosure()));
     $this->reset();
     return $fileColumns;
   }
@@ -94,12 +91,10 @@ class CsvFile extends SourceBase {
    */
   public function getRowsCount() {
     $c = 0;
-    if ($this->handler) {
-      while (!feof($this->handler)) {
-        $content = fgets($this->handler);
-        if ($content) {
-          $c++;
-        }
+    while (!$this->getHandler()->eof()) {
+      $content = $this->getHandler()->fgets();
+      if ($content) {
+        $c++;
       }
     }
     $this->reset();
@@ -110,7 +105,8 @@ class CsvFile extends SourceBase {
    * @return array|false
    */
   public function getRowAsArray() {
-    $rawRow = fgetcsv($this->getHandler(), 0, $this->getSeparator(), $this->getEnclosure());
+    $rawRow = $this->getHandler()
+      ->fgetcsv($this->getSeparator(), $this->getEnclosure());
     return $rawRow;
   }
 
@@ -119,7 +115,8 @@ class CsvFile extends SourceBase {
    */
   public function getFirstRowAsArray() {
     $this->reset();
-    $rawRow = fgetcsv($this->getHandler(), 0, $this->getSeparator(), $this->getEnclosure());
+    $rawRow = $this->getHandler()
+      ->fgetcsv($this->getSeparator(), $this->getEnclosure());
     return $rawRow;
   }
 
@@ -129,9 +126,7 @@ class CsvFile extends SourceBase {
    * @return void
    */
   public function skipFirstRow() {
-    if (!empty($this->handler)) {
-      fseek($this->handler, 1);
-    }
+    $this->seek(1);
   }
 
   /**
@@ -140,14 +135,44 @@ class CsvFile extends SourceBase {
    * @return void
    */
   public function setRowNumber(int $number) {
-    fseek($this->handler, $number);
+    $this->seek($number);
   }
 
   /**
    * @return bool
    */
   public function hasRow() {
-    return !feof($this->getHandler());
+    return !$this->getHandler()->eof();
+  }
+
+  /**
+   * SEEK an Spl object.
+   *
+   * There is a bug in php for seeking files seems solved php_version > PHP8.0.1
+   * See https://bugs.php.net/bug.php?id=46569
+   * & https://3v4l.org/O89dJ
+   *
+   * $Spl->seek() Works ok in all versions with offset 0 (first row)
+   * On PHP_VERSION < 8.0.1:
+   *  - Offset 1: seek() cannot seek at row 1. It will be done manually, rewind
+   * file and reading first row
+   *  - Rest of Offsets: The cursor remains at next row of $Offset
+   *
+   * @param int $offset
+   */
+  function seek($offset) {
+    if (version_compare(PHP_VERSION, '8.0.1', '>=') || $offset == 0) {
+      $this->getHandler()->seek($offset);
+    }
+    elseif ($offset == 1) {
+      // Ensure to go at first row before exit.
+      $this->getHandler()->rewind();
+      // Read line 0. Cursor remains now at line 1.
+      $this->getHandler()->fgets();
+    }
+    else {
+      $this->getHandler()->seek($offset - 1);
+    }
   }
 
 }

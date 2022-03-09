@@ -41,7 +41,7 @@ abstract class SourceBase {
   /**
    * Getter and setter for handler.
    *
-   * @var null
+   * @var \SplFileObject|null
    */
   protected $handler = NULL;
 

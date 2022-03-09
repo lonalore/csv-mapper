@@ -75,7 +75,7 @@ class Parser {
         return FALSE;
       }
       elseif (isset($field['fn']) && $field['fn']) {
-        $result[$key] = $field['fn']($input);
+        $result[$key] = is_array($field['fn']) ? call_user_func_array($field['fn'], [$input]): $field['fn']($input);
       }
       else {
         $result[$key] = $input;
