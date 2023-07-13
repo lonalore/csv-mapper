@@ -1,6 +1,6 @@
 <?php
 
-namespace CSVMapper;
+namespace CsvMapper;
 
 /**
  * MappingManager.

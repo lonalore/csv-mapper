@@ -6,7 +6,7 @@ CSV Mapper is a PHP library, which parses CSV files into PHP array.
 ### Example
 
 ```php
-$file = new \CSVMapper\Source\ExcelFile();
+$file = new \CsvMapper\Source\ExcelFile();
 // $file->setColumnsAllowed(4);
 $file->setFolder('./');
 $file->setName('test.xlsx');
@@ -15,10 +15,10 @@ $file->setPath('./test.xlsx');
 // First row from the file (if needed).
 $header = $file->getFirstRowAsArray();
 
-$mapper = new \CSVMapper\MappingManager();
-$error = new \CSVMapper\ErrorManager();
-$parser = new \CSVMapper\Parser\Parser();
-$reader = new \CSVMapper\Reader\Reader();
+$mapper = new \CsvMapper\MappingManager();
+$error = new \CsvMapper\ErrorManager();
+$parser = new \CsvMapper\Parser\Parser();
+$reader = new \CsvMapper\Reader\Reader();
 
 $mapper->set('Column label: ' . $header[0], ['key' => 0, 'fn' => FALSE]);
 $mapper->set('Column label: ' . $header[1], ['key' => 1, 'fn' => FALSE]);

@@ -1,6 +1,6 @@
 <?php
 
-namespace CSVMapper\Source;
+namespace CsvMapper\Source;
 
 /**
  * CsvFile.

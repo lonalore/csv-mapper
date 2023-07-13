@@ -1,6 +1,6 @@
 <?php
 
-namespace CSVMapper\Exception;
+namespace CsvMapper\Exception;
 
 /**
  * PropertyMissingException.

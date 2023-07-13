@@ -1,6 +1,6 @@
 <?php
 
-namespace CSVMapper\Source;
+namespace CsvMapper\Source;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;

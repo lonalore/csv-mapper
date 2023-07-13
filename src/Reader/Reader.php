@@ -1,10 +1,10 @@
 <?php
 
-namespace CSVMapper\Reader;
+namespace CsvMapper\Reader;
 
-use CSVMapper\Parser\Parser;
-use CSVMapper\Source\SourceBase;
-use CSVMapper\Exception\WrongColumnsNumberException;
+use CsvMapper\Parser\Parser;
+use CsvMapper\Source\SourceBase;
+use CsvMapper\Exception\WrongColumnsNumberException;
 
 /**
  * Reader.
@@ -12,12 +12,12 @@ use CSVMapper\Exception\WrongColumnsNumberException;
 class Reader {
 
   /**
-   * @var \CSVMapper\Source\SourceBase
+   * @var \CsvMapper\Source\SourceBase
    */
   private $source = NULL;
 
   /**
-   * @var \CSVMapper\Parser\Parser
+   * @var \CsvMapper\Parser\Parser
    */
   private $parser = NULL;
 
@@ -29,7 +29,7 @@ class Reader {
   }
 
   /**
-   * @param \CSVMapper\Source\SourceBase $source
+   * @param \CsvMapper\Source\SourceBase $source
    *
    * @return void
    */
@@ -46,7 +46,7 @@ class Reader {
   }
 
   /**
-   * @param \CSVMapper\Parser\Parser $parser
+   * @param \CsvMapper\Parser\Parser $parser
    *
    * @return void
    */
@@ -65,7 +65,7 @@ class Reader {
 
   /**
    * @return void
-   * @throws \CSVMapper\Exception\WrongColumnsNumberException
+   * @throws \CsvMapper\Exception\WrongColumnsNumberException
    */
   private function isFileOk() {
     $this->source->checkProperty('folder');
@@ -75,7 +75,7 @@ class Reader {
 
   /**
    * @return void
-   * @throws \CSVMapper\Exception\WrongColumnsNumberException
+   * @throws \CsvMapper\Exception\WrongColumnsNumberException
    */
   private function checkColumnsNumber() {
     $sourceColumns = $this->source->getColumnsCount();

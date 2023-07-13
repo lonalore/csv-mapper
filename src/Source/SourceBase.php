@@ -1,9 +1,9 @@
 <?php
 
-namespace CSVMapper\Source;
+namespace CsvMapper\Source;
 
-use CSVMapper\Exception\PropertyMissingException;
-use CSVMapper\Exception\ConfigurationMissingException;
+use CsvMapper\Exception\PropertyMissingException;
+use CsvMapper\Exception\ConfigurationMissingException;
 
 /**
  * SourceBase.
@@ -138,8 +138,8 @@ abstract class SourceBase {
    * @param $key
    *
    * @return void
-   * @throws \CSVMapper\Exception\ConfigurationMissingException
-   * @throws \CSVMapper\Exception\PropertyMissingException
+   * @throws \CsvMapper\Exception\ConfigurationMissingException
+   * @throws \CsvMapper\Exception\PropertyMissingException
    */
   public function checkProperty($key) {
     if (!property_exists($this, $key)) {

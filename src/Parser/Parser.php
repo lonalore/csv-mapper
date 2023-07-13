@@ -1,9 +1,9 @@
 <?php
 
-namespace CSVMapper\Parser;
+namespace CsvMapper\Parser;
 
-use CSVMapper\MappingManager;
-use CSVMapper\ErrorManager;
+use CsvMapper\MappingManager;
+use CsvMapper\ErrorManager;
 
 /**
  * Parser.
@@ -11,12 +11,12 @@ use CSVMapper\ErrorManager;
 class Parser {
 
   /**
-   * @var \CSVMapper\MappingManager
+   * @var \CsvMapper\MappingManager
    */
   private $mappingManager;
 
   /**
-   * @var \CSVMapper\ErrorManager
+   * @var \CsvMapper\ErrorManager
    */
   private $errorManager;
 
@@ -28,7 +28,7 @@ class Parser {
   }
 
   /**
-   * @param \CSVMapper\MappingManager $mappingManager
+   * @param \CsvMapper\MappingManager $mappingManager
    *
    * @return void
    */
@@ -44,7 +44,7 @@ class Parser {
   }
 
   /**
-   * @param \CSVMapper\ErrorManager $errorManager
+   * @param \CsvMapper\ErrorManager $errorManager
    *
    * @return void
    */
